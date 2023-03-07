@@ -60,7 +60,7 @@ class Repository implements IRepository {
 
     public function delete(string $condition) : void 
     {
-        $sql = "DELETE FROM".$this -> tableName." WHERE $condition;";
+        $sql = "DELETE FROM ".$this -> tableName." WHERE $condition;";
         if (!self::run_query($sql)) {
             throw new Exception("Aktualizace stavajici polozky selhalo!");
         }

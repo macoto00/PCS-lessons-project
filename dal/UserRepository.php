@@ -19,7 +19,8 @@ class UserRepository extends Repository
         $aqlSelect -> bind_param("s", $UserName);
         $aqlSelect -> execute();
         $res = $sqlSelect -> get_result();
-        if ($res -> num_rows > 0) {
+        if ($res -> num_rows > 0) 
+        {
             while ($row = $res -> fetch_assoc()) {
                 $output -> Id = $row["Id"];
                 $output -> UserName = $row["IUserNamed"];
@@ -29,8 +30,9 @@ class UserRepository extends Repository
             }
         } 
         else {
-            echo "0 results";
+            echo "0 results!";
         }
+
         return $output;
     }
 }

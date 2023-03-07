@@ -3,9 +3,9 @@
 require_once(__DIR__."/db/db.php");
 require_once(__DIR__."/dal/Repository.php");
 
-require_once(__DIR__."/dal/Repository.php");
+require_once(__DIR__."/dal/UserRepository.php");
 
-$repo = new Repository($connection, "Users");
+$repo = new UserRepository($connection);
 
 // $input = array("Username" => "TomasMacoun", "Password" => "abc", "FirstName" => "Tomas", "LastName" => "Macoun");
 
@@ -20,6 +20,7 @@ $repo = new Repository($connection, "Users");
 
 // $input = "Id = 2";
 
-
+$res = $repo -> get_user("TomasMacoun");
+var_dump($res);
 
 ?>
