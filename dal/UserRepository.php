@@ -23,7 +23,7 @@ class UserRepository extends Repository
         {
             while ($row = $res -> fetch_assoc()) {
                 $output -> Id = $row["Id"];
-                $output -> UserName = $row["IUserNamed"];
+                $output -> UserName = $row["UserName"];
                 $output -> Password = $row["Password"];
                 $output -> FirstName = $row["FirstName"];
                 $output -> LastName = $row["LastName"];

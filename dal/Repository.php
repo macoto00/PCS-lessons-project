@@ -29,7 +29,6 @@ class Repository implements IRepository {
 
     }
 
-// zde chyba?
     public function retrieve(string $condition = null) : array 
     {
         $sql = "SELECT * FROM ".$this -> tableName;
@@ -81,3 +80,5 @@ class Repository implements IRepository {
         return $this -> connection -> query($sql);
     }
 }
+
+?>
