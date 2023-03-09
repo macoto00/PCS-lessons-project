@@ -1,6 +1,6 @@
 <?php
 
-class Username{
+class User{
     public int $Id;
     public string $Username;
     public string $Password;

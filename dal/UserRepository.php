@@ -1,7 +1,7 @@
 <?php
 
 require_once(__DIR__."/Repository.php");
-require_once(__DIR__."//../model/user.php");
+require_once(__DIR__."//../model/User.php");
 
 class UserRepository extends Repository 
 {
@@ -15,15 +15,15 @@ class UserRepository extends Repository
     public function get_user(string $userName) : User
     {
         $output = new User();
-        $aqlSelect = $this -> connection -> prepare("SELECT * FROM ".self::TABLE_NAME. " WHERE UserName = ?");
-        $aqlSelect -> bind_param("s", $UserName);
-        $aqlSelect -> execute();
+        $sqlSelect = $this -> connection -> prepare("SELECT * FROM ".self::TABLE_NAME. " WHERE UserName = ?");
+        $sqlSelect -> bind_param("s", $UserName);
+        $sqlSelect -> execute();
         $res = $sqlSelect -> get_result();
         if ($res -> num_rows > 0) 
         {
             while ($row = $res -> fetch_assoc()) {
                 $output -> Id = $row["Id"];
-                $output -> UserName = $row["UserName"];
+                $output -> Username = $row["UserName"];
                 $output -> Password = $row["Password"];
                 $output -> FirstName = $row["FirstName"];
                 $output -> LastName = $row["LastName"];

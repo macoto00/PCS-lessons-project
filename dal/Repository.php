@@ -43,7 +43,7 @@ class Repository implements IRepository {
 
     public function update(array $fieldsAndValuesToUpdate, string $condition) : void 
     {
-        $sql = "UPDATE ".$this -> tableName." SET ";
+        $sql = "UPDATE ".$this -> tableName." SET";
         $sets = array();
         foreach ($fieldsAndValuesToUpdate as $key => $value) {
             array_push($sets, "$key = '$value'");
