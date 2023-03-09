@@ -1,7 +1,7 @@
 <?php
 
 require_once(__DIR__."/Repository.php");
-require_once(__DIR__."//../model/User.php");
+require_once(__DIR__."/../model/User.php");
 
 class UserRepository extends Repository 
 {
