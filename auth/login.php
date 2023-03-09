@@ -17,8 +17,10 @@
             <div>
                 <input type="checkbox" name="remember"><span>zapamatovat si me</span><br><br>
             </div>
-            <input type="submit" value="Prihlasit se">
+            <input type="submit" value="Prihlasit se" name="submit">
         </form>
+        <a href="./signup.php">Zaregistrovat se</a><br><br>
+        <a href="./forgot.php">Zapomenuté heslo</a>
     </div>
     <div class="right-side"></div>
 </body>
