@@ -11,32 +11,38 @@ class Signer implements ISigner {
 
     public function __construct(mysqli $conn)
     {
-        $this -> connection - $conn;
+        $this -> connection = $conn;
         $this -> crypt = new Crypt();
     }
 
-    // doplnit
     public function add_user(string $username, string $password, string $confirmPassword, string $firstName, string $lastName) : void
     {
         if ($password === $confirmPassword) {
             $enc_password = $this -> crypt -> encrypt($password);
-            $sql = "INSERT INTO ".self::TABLE_NAME."(UserName, Password, FirstName, LastName)VALUES('', '', '', '')"
+            $sql = "INSERT INTO ".self::TABLE_NAME."(UserName, Password, FirstName, LastName)VALUES('$username', '$enc_password', '$firstName', '$lastName')";
+            if (!$this -> connection -> query($sql)) {
+                throw new Exception("Pridani noveho uzivatele selhalo");
+            }
         }
     }
 
-    // doplnit
     public function update_user(string $username, string $newPassword, string $confirmNewPassword) : void
     {
-        if ($newPassword === $confirmPassword) {
+        if ($newPassword === $confirmNewPassword) {
             $enc_password = $this -> crypt -> encrypt($newPassword);
-            $sql = "UPDATE ".self
+            $sql = "UPDATE ".self::TABLE_NAME." SET password = '$enc_password' WHERE UserName = '$username'";
+            if (!$this -> connection -> query($sql)) {
+                throw new Exception("Aktualizace hesla uzivatele selhala");
+            }
         }
     }
 
-    // doplnit
     public function delete_user(string $username) : void 
     {
-        $sql = "DELETE FROM ".self::TABLE_NAME." WHERE UserName = '$username';
+        $sql = "DELETE FROM ".self::TABLE_NAME." WHERE UserName = '$username'";
+        if (!$this -> connection -> query($sql)) {
+            throw new Exception("Smazani uzivatele selhalo");
+        }
     }
 }
 
