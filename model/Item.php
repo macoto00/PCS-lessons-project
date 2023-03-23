@@ -1,6 +1,7 @@
 <?php
 
-class Item {
+class Item
+{
     public int $Id;
     public string $Content;
     public bool $Done;

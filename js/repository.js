@@ -1,9 +1,9 @@
-class Repository 
+class Repository
 {
     constructor(tableName)
     {
-        this.Async = new this.Async();
-        this.TableName = tableName;
+        this.async = new Async();
+        this.tableName = tableName;
     }
 
     create(formdata)
@@ -15,7 +15,8 @@ class Repository
     retrieve(formdata)
     {
         formdata.append("operation_type", "retrieve");
-        return this.#runAsync(formdata);    }
+        return this.#runAsync(formdata);
+    }
 
     update(formdata)
     {
@@ -31,19 +32,19 @@ class Repository
 
     #runAsync(formdata)
     {
-        return this.Async.performOperation(formdata, formdata, this.#formatDestination(this.TableName));
+        return this.async.performOperation(formdata, this.#formatDestination(this.tableName));
     }
 
     #formatDestination(str)
     {
-        var loweredStr = str.toLowerCase();
-        var capitalizedFirstStr = this.#capitalizedFirstLetter(loweredStr);
+        var loweredStr = str.toLowerCase(str);
+        var capitalizedFirstStr = this.#capitalizeFirstLetter(loweredStr);
         var singularStr = capitalizedFirstStr.replace(/s{1}$/, '');
-        return `./endpoints/${singularStr}Endpoint.php`;
+        return `./endpoints/${singularStr}EndPoint.php`;
     }
 
-    #capitalizedFirstLetter(str)
+    #capitalizeFirstLetter(str)
     {
         return str.charAt(0).toUpperCase() + str.slice(1);
-    }
+    } 
 }

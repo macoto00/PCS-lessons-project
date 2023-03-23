@@ -2,7 +2,7 @@ const GROUPS_TABLE_NAME = "groups";
 
 var groupRepository = new GroupRepository();
 
-function addBewGroup(object)
+function addNewGroup(object)
 {
     var formdata = new FormData();
     const DEFAULT_GROUP_NAME = "New todo list";
@@ -11,46 +11,52 @@ function addBewGroup(object)
     formdata.append("UpdatedOn", null);
     formdata.append("UserId", document.body.getAttribute("data-userid"));
 
-    var insertGroupId = groupRepository.create(formdata);
+    // Creating a database record
+    var insertedGroupId = groupRepository.create(formdata);
 
-    var newGroup = createGroupDomElement(insertGroupId);
-    var firstGroup = object.parentNode.getElementByCLassName("form-container")[0];
-    object.parentNode.getElementByCLassName("group-container")[0].insertBefore(newGroup, firstGroup);
+    // Creating a new group element
+    var newGroup = createGroupDomElement(insertedGroupId);
+    var firstGroup = object.parentNode.getElementsByClassName("form-container")[0];
+    object.parentNode.getElementsByClassName("groups-container")[0].insertBefore(newGroup, firstGroup);
 }
 
 function updateGroup(object)
 {
     var groupElem = object.parentNode;
     var formdata = new FormData();
-    formdata.append("Id", groupElem.getAttribute("data-groupid"));
+    formdata.append("Id", groupElem.getAttribute("data-groupId"));
     formdata.append("UpdatedOn", prepareDateForDatabase(new Date()));
     formdata.append("Name", object.innerText);
 
+    // Updating a database record
     groupRepository.update(formdata);
 
+    // updating date label
     var listContents = groupElem.getElementsByClassName("list-content");
-    var statusElem = listContents[listContents.length - 1]; 
-    statusElem.innerText = `Updated: ${prepareDateForDisplaying(new Date())}`
+    var statusElem = listContents[listContents.length - 1];
+    statusElem.innerText = `Updated: ${prepareDateForDisplaying(new Date())}`;
 }
 
 function deleteGroup(object)
 {
     var formdata = new FormData();
-    formdata.append("Id", object.getAttribute("data-groupid"));
+    formdata.append("Id", object.getAttribute("data-groupId"));
 
+    // Deleting a database record
     groupRepository.delete(formdata);
-
+    
+    // Deleting group element
     object.remove();
 }
 
-function createGroupDomElement(insertGroupId)
+function createGroupDomElement(insertedGroupId)
 {
     var newGroup = document.createElement("div");
     newGroup.className = "form-container";
     newGroup.setAttribute("data-open", 1);
-    newGroup.setAttribute("data-groupid", insertedGroupId);
+    newGroup.setAttribute("data-groupId", insertedGroupId);
     newGroup.innerHTML = 
-    `<div class="list-header" contenteditable onblur="updateGroup(this)">
+        `<div class="list-header" contenteditable onblur="updateGroup(this)">
             New todo list
         </div>
         <div class="list-content">
@@ -75,6 +81,5 @@ function createGroupDomElement(insertGroupId)
                 <div class="list-control-icon" data-type="delete" title="Delete" onclick="deleteGroup(this.parentNode.parentNode.parentNode)"></div>
             </div>
         </div>`;
-
-        return newGroup;
+    return newGroup;
 }

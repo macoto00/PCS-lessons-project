@@ -1,0 +1,28 @@
+.block{
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+.intro-logo{
+    width: 100%;
+    max-width: 500px;
+}
+
+.intro-logo-small{
+    width: 100%;
+    max-width: 300px;
+}
+
+body{
+    padding: 120px 50px;
+    box-sizing: border-box;
+}
+
+h1{
+    font-family: 'Courier New', Courier, monospace;
+}

@@ -1,52 +1,48 @@
 <?php
 
 require_once(__DIR__."/../dal/ItemRepository.php");
+require_once(__DIR__."/../dal/GroupRepository.php");
 
-if (isset($_POST["operation_type"])) {
-
+if(isset($_POST["operation_type"]))
+{
     $itemRepo = new ItemRepository($connection);
     $groupRepo = new GroupRepository($connection);
-    if ($_POST["operation_type"] == "create") 
+    if($_POST["operation_type"] == "create")
     {
-        if (isset($_POST["Content"]) && isset($_POST["Done"]) && isset($_POST["CreatedOn"]) && isset($_POST["UpdatedOn"]) && isset($_POST["GroupId"])) 
+        if(isset($_POST["Content"]) &&
+           isset($_POST["Done"]) &&
+           isset($_POST["CreatedOn"]) &&
+           isset($_POST["UpdatedOn"]) &&
+           isset($_POST["GroupId"]))
         {
             $input = array("Content" => $_POST["Content"],
-            "Done" => $_POST["Done"],
-            "CreatedOn" => $_POST["CreatedOn"],
-            "UpdatedOn" => $_POST["UpdatedOn"],
-            "GroupId" => $_POST["GroupId"]);
+                           "Done" => $_POST["Done"],
+                           "CreatedOn" => $_POST["CreatedOn"],
+                           "UpdatedOn" => $_POST["UpdatedOn"],
+                           "GroupId" => $_POST["GroupId"]);
             echo $itemRepo -> create($input);
 
-            $condition = "Id = ".$_POST["Id"];
-            $updateInput = array("UpdateOn" => $_POST["CreatedOn"]);
-            $groupRepo -> update($updateInput, $condition);
+            $groupRepo -> update(array("UpdatedOn" => $_POST["CreatedOn"]), "Id = ".$_POST["GroupId"]);
         }
     }
-
-    else if ($_POST["operation_type"] == "update") 
+    else if($_POST["operation_type"] == "update")
     {
-        if (isset($_POST["Id"]) && isset($_POST["UpdatedOn"]) && isset($_POST["Done"]) && isset($_POST["Content"]) && isset($_POST["GroupId"])) 
+        if(isset($_POST["Id"]) && isset($_POST["UpdatedOn"]) && isset($_POST["Done"]) && isset($_POST["Content"]) && isset($_POST["GroupId"]))
         {
             $condition = "Id = ".$_POST["Id"];
             $input = array("Content" => $_POST["Content"],
-            "Done" => $_POST["Done"],
-            "UpdatedOn" => $_POST["UpdatedOn"]);
+                           "Done" => $_POST["Done"],
+                           "UpdatedOn" => $_POST["UpdatedOn"]);
             $itemRepo -> update($input, $condition);
-            $groupCondition = "Id = ".$_POST["GroupId"];
-            $groupInput = array("UpdateOn" => $_POST["UpdateOn"]);
-            $groupRepo -> update($groupInput, $groupCondition);
+            $groupRepo -> update(array("UpdatedOn" => $_POST["UpdatedOn"]), "Id = ".$_POST["GroupId"]);
         }
     }
-
-    else if ($_POST["operation_type"] == "delete") 
+    else if($_POST["operation_type"] == "delete")
     {
-        if (isset($_POST["Id"]) && isset($_POST["Date"]) && isset($_POST["GroupId"]))  
+        if(isset($_POST["Id"]) && isset($_POST["Date"]) && isset($_POST["GroupId"]))
         {
-            $deleteCondition = "Id = ".$_POST["Id"];
-            $updateCondition = "Id = ".$_POST["GroupId"];
-            $updateInput = array("UpdateOn" => $_POST["Date"]);
-            $itemRepo -> delete($deleteCondition);
-            $groupRepo -> update($updateInput, $updateCondition);
+            $itemRepo -> delete("Id = ".$_POST["Id"]);
+            $groupRepo -> update(array("UpdatedOn" => $_POST["Date"]), "Id = ".$_POST["GroupId"]);
         }
     }
 }

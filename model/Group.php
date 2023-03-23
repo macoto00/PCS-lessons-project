@@ -1,6 +1,7 @@
 <?php
 
-class Group {
+class Group
+{
     public int $Id;
     public string $Name;
     public string $CreatedOn;

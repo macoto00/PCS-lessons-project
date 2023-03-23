@@ -2,23 +2,22 @@
 
 require_once(__DIR__."/icrypt.php");
 
-class Crypt implements ICrypt 
+class Crypt implements ICrypt
 {
-    private string $ciphering = "AES-256-CTR";
-    private string $key = "asd1231-fhsjkah";
-    private string $iv = "adsf123--kHS49-5";
-    private int $options = 0;
-
-    public function decrypt(string $heslo) : string 
-    {        
-        return openssl_decrypt($heslo, $this -> ciphering, $this -> key, $this -> options, $this -> iv); {
-        }
+    // Udaje pro sifrovani a desifrovani
+    private string $CIPHERING = "AES-256-CTR";
+    private string $ENCRYPTION_IV = 'adsf123--kHS49-5';
+    private string $ENCRYPTION_KEY = "asd1231-fhsjkah";
+    private int $ENCRYPTION_OPTIONS = 0;
+    
+    public function encrypt(string $str) : string
+    {
+        return openssl_encrypt($str, $this -> CIPHERING, $this -> ENCRYPTION_KEY, $this -> ENCRYPTION_OPTIONS, $this -> ENCRYPTION_IV);
     }
 
-    public function encrypt(string $heslo) : string 
+    public function decrypt(string $str) : string
     {
-        return openssl_encrypt($heslo, $this -> ciphering, $this -> key, $this -> options, $this -> iv); {
-        }
+        return openssl_decrypt($str, $this -> CIPHERING, $this -> ENCRYPTION_KEY, $this -> ENCRYPTION_OPTIONS, $this -> ENCRYPTION_IV);
     }
 }
 

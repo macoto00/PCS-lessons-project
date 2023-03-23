@@ -1,0 +1,181 @@
+@font-face {
+    font-family: 'Product Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/productsans/v5/HYvgU2fE2nRJvZ5JFAumwegdm0LZdjqr5-oayXSOefg.woff2) format('woff2');
+}
+
+body{
+    background: #e0e0e0;
+    color:#666;
+    font-family: 'Product Sans';
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    display: flex;
+    -webkit-touch-callout: none; 
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.left-side{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.right-side{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+    margin-left: -10vw;
+}
+
+.form-container{
+    padding: 60px;
+    border-radius: 30px;
+    transition: 0.5s ease;
+    animation: appear-on-load 0.5s ease-out 0s 1;
+    background: linear-gradient(145deg, #f0f0f0, #cacaca);
+    box-shadow:  28px 28px 57px #bebebe,
+             -28px -28px 57px #ffffff;
+}
+
+.form-container:hover{
+    box-shadow:  28px 28px 57px #b3b3bd,
+             -28px -28px 57px #ffffff;
+}
+
+.right-side{
+    width: 60vw;
+    height: 100vh;
+}
+
+h1{
+    color: #2E3192;
+    font-size: 40px;
+}
+
+input{
+    border: none;
+    outline: none;
+}
+
+input[type='email'],
+input[type='text'],
+input[type='password']{
+    font-size: 20px;
+    padding: 5px 8px;
+    border-radius: 8px;
+    background: #e0e0e0;
+    box-shadow: inset 3px 3px 6px #bebebe,
+                inset -3px -3px 6px #ffffff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input[type='checkbox']{
+    width: 20px;
+    height: 20px;
+    appearance: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    background: linear-gradient(145deg, #f0f0f0, #cacaca);
+    box-shadow: inset 4px 4px 8px #bebebe,
+                inset -4px -4px 8px #ffffff;
+}
+
+input[type='checkbox']:checked
+{
+    background: #2E3192;
+    background-image: url("../img/tick.svg");
+    background-repeat: no-repeat;
+    box-shadow: none;
+    background-size: 75% 75%;
+    background-position: center;
+}
+
+input[type='submit']{
+    padding: 8px 20px;
+    font-size: 20px;
+    border-radius: 8px;
+    background: #e0e0e0;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: 0.5s ease;
+    opacity: 0.8;
+    box-shadow:  4px 4px 8px #bebebe,
+                -4px -4px 8px #ffffff;
+}
+
+input[type='submit']:hover{
+    cursor: pointer;
+    opacity: 1;
+    background: #2E3192;
+    color: rgb(193, 191, 255);
+}
+
+a:link, a:visited{
+    text-decoration: none;
+    color: #2E3192;
+}
+
+.remember{
+    display: flex;
+    flex-direction: row;
+    line-height: 25px;
+}
+
+.remember > label{
+    margin-top: 2px;
+}
+
+.logo{
+    width: 300px;
+    height: 80px;
+    background-image: url("../img/logo.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.school-logo{
+    width: 400px;
+    height: 50px;
+    background-image: url("../img/pcslogo.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-top: 20px;
+}
+
+@keyframes appear-on-load {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@media screen AND (max-width: 960px) {
+    .right-side{
+        display: none;
+    }
+
+    .left-side{
+        width: 100vw;
+        padding: 0px 30px;
+        box-sizing: border-box;
+    }
+}

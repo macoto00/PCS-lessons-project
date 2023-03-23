@@ -1,0 +1,112 @@
+body{
+    padding: 130px 50px;
+    box-sizing: border-box;
+}
+
+.block{
+    width: 100%;
+    max-width: 500px;
+    border-radius: 30px;
+    transition: 0.5s ease;
+    animation: appear-on-load 0.5s ease-out 0s 1;
+    box-shadow:  28px 28px 57px #bebebe,
+             -28px -28px 57px #ffffff;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    padding-bottom: 0px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.block-picture{
+    width: 200px;
+    height: 200px;
+    filter: grayscale(1);
+    border-radius: 50%;
+    box-shadow:  28px 28px 57px #bebebe,
+             -28px -28px 57px #ffffff;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-sizing: border-box;
+}
+
+.block-picture[type="autor"]{
+    background-image: url("../img/personal.jpg");
+}
+
+.block-picture[type="school"]{
+    background-image: url("../img/pcslogoshort.svg");
+    background-size: 75% 75%;
+}
+
+.block-info{
+    padding: 50px;
+}
+
+.block-links > a > div{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 60% 60%;
+}
+
+.email{
+    background-image: url("../img/mail.svg");
+}
+
+
+.tel{
+    background-image: url("../img/contacts.svg");
+}
+
+.lin{
+    background-image: url("../img/linkedin.svg");
+}
+
+.web{
+    background-image: url("../img/web.svg");
+}
+
+.block-header{
+    margin: 0;
+    font-size: 30px;
+}
+
+.block-links{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.block-links > a{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    box-shadow: 4px 4px 8px #b3b3b3,
+    -4px -4px 8px #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 520px) {
+    .block{
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .block-picture{
+        width: 150px;
+        height: 150px;
+    }
+}

@@ -1,0 +1,13 @@
+.form-container{
+    padding: 10px 60px;
+    padding-bottom: 20px;
+}
+
+h1{
+    color: #2E3192;
+    font-size: 40px;
+}
+
+input[type='submit']{
+    margin-bottom: 0;
+}
