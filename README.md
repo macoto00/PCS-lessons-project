@@ -1,3 +1,3 @@
-# PCS-lessons-project
-Praha Coding School lessons project - 
-Complete project with Praha Coding School
+# PCS-lesson-project
+Praha Coding School final project - 
+Complete TODO app with Praha Coding School
